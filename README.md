@@ -9,9 +9,9 @@ Prerequisites:
  4. NodeJS (version 0.10.36)
 
 I made this for my own continuous self-improvement.
-I am trying to apply best practices w.r.t. architecture, 
+I am trying to apply best practices w.r.t. architecture, test-driven development and UX design.
 For others who wish to use it, you may do so freely (that would make me very happy).
-Currently, it is still at its infant stage.
+Currently, it is still at its infant stage and it doesn't do much.
 
 To get your copy: <b>git clone https://github.com/ianchute/PizzaShack</b>
 
