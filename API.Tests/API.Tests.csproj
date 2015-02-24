@@ -11,6 +11,8 @@
     <AssemblyName>API.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -75,13 +77,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\Controllers\CustomersController.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomersController.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Services\CustomerService.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomerService.feature</DependentUpon>
+    </Compile>
     <Compile Include="Services.cs" />
+    <Compile Include="Tests\Controllers\CustomersControllerSteps.cs" />
+    <Compile Include="Tests\Controllers\CustomersControllerSteps2.cs" />
     <Compile Include="Tests\Infra\ContainerTest.cs" />
     <Compile Include="Tests\Infra\MapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Features\Controllers\CustomersController.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CustomersController.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Services\CustomerService.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CustomerService.feature.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -95,16 +117,20 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\Applications\" />
-    <Folder Include="Features\Controllers\" />
     <Folder Include="Features\Repositories\" />
-    <Folder Include="Features\Services\" />
     <Folder Include="Tests\Applications\" />
-    <Folder Include="Tests\Controllers\" />
     <Folder Include="Tests\Repositories\" />
     <Folder Include="Tests\Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

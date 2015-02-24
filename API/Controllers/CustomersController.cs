@@ -17,5 +17,46 @@ namespace API.Controllers
         {
             this.Service = service;
         }
+
+        public HttpResponseMessage List()
+        {
+            return Request.CreateResponse(HttpStatusCode.OK, new List<CustomerViewModel>());
+        }
+
+        public HttpResponseMessage Add(CustomerAddModel addModel)
+        {
+            if (!ModelState.IsValid)
+                return Request.CreateResponse((HttpStatusCode)422, "Unprocessable Entity");
+            var added = Service.Add(addModel);
+            if(added)
+                return Request.CreateResponse(HttpStatusCode.Created);
+            return Request.CreateResponse(HttpStatusCode.InternalServerError);
+        }
+
+        public HttpResponseMessage Get(Guid id)
+        {
+            var result = Service.Get(id);
+            if (result != null)
+                return Request.CreateResponse(HttpStatusCode.OK, result);
+            return Request.CreateResponse(HttpStatusCode.NotFound);
+        }
+
+        public HttpResponseMessage Delete(Guid id)
+        {
+            var deleted = Service.Delete(id);
+            if (deleted)
+                return Request.CreateResponse(HttpStatusCode.NoContent);
+            return Request.CreateResponse(HttpStatusCode.NotFound);
+        }
+
+        public HttpResponseMessage Edit(CustomerEditModel editModel)
+        {
+            if (!ModelState.IsValid)
+                return Request.CreateResponse((HttpStatusCode)422, "Unprocessable Entity");
+            var edited = Service.Edit(editModel);
+            if(edited)
+                return Request.CreateResponse(HttpStatusCode.OK);
+            return Request.CreateResponse(HttpStatusCode.NotFound);
+        }
     }
 }
