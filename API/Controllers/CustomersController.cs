@@ -20,6 +20,9 @@ namespace API.Controllers
 
         public HttpResponseMessage List()
         {
+            var customers = Service.List();
+            if (customers == null)
+                return Request.CreateResponse(HttpStatusCode.NotFound);
             return Request.CreateResponse(HttpStatusCode.OK, new List<CustomerViewModel>());
         }
 

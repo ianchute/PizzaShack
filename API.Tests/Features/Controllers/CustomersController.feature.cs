@@ -72,7 +72,7 @@ namespace API.Tests.Features.Controllers
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line 4
- testRunner.Given("I have a customer service that returns data when list is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a mock customer service that returns data when list is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
  testRunner.And("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 6
@@ -93,15 +93,15 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
 this.ScenarioSetup(scenarioInfo);
 #line 11
- testRunner.Given("I have a customer service that returns null when list is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a mock customer service that returns null when list is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 12
  testRunner.And("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
- testRunner.When("I request for a list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I have an id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 14
- testRunner.Then("the response should be not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I request for a list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
- testRunner.And("the response content should be an enumerable customer view model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("the response should be not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -114,7 +114,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 17
 this.ScenarioSetup(scenarioInfo);
 #line 18
- testRunner.Given("I have a customer service that returns true when add is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a mock customer service that returns true when add is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 19
  testRunner.And("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 20
@@ -137,7 +137,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 25
 this.ScenarioSetup(scenarioInfo);
 #line 26
- testRunner.Given("I have a customer service that returns true when add is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a mock customer service that returns true when add is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 27
  testRunner.And("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 28
@@ -160,7 +160,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 33
 this.ScenarioSetup(scenarioInfo);
 #line 34
- testRunner.Given("I have a customer service that returns false when add is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a mock customer service that returns false when add is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 35
  testRunner.And("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 36
@@ -183,7 +183,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 41
 this.ScenarioSetup(scenarioInfo);
 #line 42
- testRunner.Given("I have a customer service that returns true when add is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a mock customer service that returns true when add is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 43
  testRunner.And("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 44
@@ -206,14 +206,16 @@ this.ScenarioSetup(scenarioInfo);
 #line 49
 this.ScenarioSetup(scenarioInfo);
 #line 50
- testRunner.Given("I have a customer service that returns data when get is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a mock customer service that returns data when get is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 51
  testRunner.And("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 52
- testRunner.When("I get customer by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I have an id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 53
- testRunner.Then("the response should be ok", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I get customer by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 54
+ testRunner.Then("the response should be ok", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 55
  testRunner.And("the response content should be a customer view model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -224,15 +226,17 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void GettingACustomerByIdWithNullResponseFromService()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Getting a customer by id with null response from service", ((string[])(null)));
-#line 56
-this.ScenarioSetup(scenarioInfo);
 #line 57
- testRunner.Given("I have a customer service that returns null when get is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 58
- testRunner.And("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have a mock customer service that returns null when get is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 59
- testRunner.When("I get customer by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 60
+ testRunner.And("I have an id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 61
+ testRunner.When("I get customer by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 62
  testRunner.Then("the response should be not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -243,19 +247,19 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void EditingACustomerWithValidModelState()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Editing a customer with valid model state", ((string[])(null)));
-#line 62
-this.ScenarioSetup(scenarioInfo);
-#line 63
- testRunner.Given("I have a customer service that returns true when edit is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 64
- testRunner.And("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
 #line 65
- testRunner.And("I have a customer edit model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have a mock customer service that returns true when edit is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 66
- testRunner.And("the model state is valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 67
- testRunner.When("I update using the customer edit model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I have a customer edit model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 68
+ testRunner.And("the model state is valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 69
+ testRunner.When("I update using the customer edit model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 70
  testRunner.Then("the response should be ok", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -266,19 +270,19 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void EditingACustomerWithInvalidModelState()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Editing a customer with invalid model state", ((string[])(null)));
-#line 70
-this.ScenarioSetup(scenarioInfo);
-#line 71
- testRunner.Given("I have a customer service that returns true when edit is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 72
- testRunner.And("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
 #line 73
- testRunner.And("I have a customer edit model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have a mock customer service that returns true when edit is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 74
- testRunner.And("the model state is invalid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 75
- testRunner.When("I update using the customer edit model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I have a customer edit model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 76
+ testRunner.And("the model state is invalid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 77
+ testRunner.When("I update using the customer edit model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 78
  testRunner.Then("the response should be unprocessable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -289,19 +293,19 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void EditingACustomerWithServiceReturningTrue()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Editing a customer with service returning true", ((string[])(null)));
-#line 78
-this.ScenarioSetup(scenarioInfo);
-#line 79
- testRunner.Given("I have a customer service that returns true when edit is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 80
- testRunner.And("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
 #line 81
- testRunner.And("I have a customer edit model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have a mock customer service that returns true when edit is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 82
- testRunner.And("the model state is valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 83
- testRunner.When("I update using the customer edit model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I have a customer edit model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 84
+ testRunner.And("the model state is valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 85
+ testRunner.When("I update using the customer edit model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 86
  testRunner.Then("the response should be ok", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -312,19 +316,19 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void EditingACustomerWithServiceReturningFalse()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Editing a customer with service returning false", ((string[])(null)));
-#line 86
-this.ScenarioSetup(scenarioInfo);
-#line 87
- testRunner.Given("I have a customer service that returns false when edit is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 88
- testRunner.Given("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+this.ScenarioSetup(scenarioInfo);
 #line 89
- testRunner.And("I have a customer edit model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have a mock customer service that returns false when edit is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 90
- testRunner.And("the model state is valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Given("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 91
- testRunner.When("I update using the customer edit model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("I have a customer edit model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 92
+ testRunner.And("the model state is valid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 93
+ testRunner.When("I update using the customer edit model", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 94
  testRunner.Then("the response should be not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -335,15 +339,17 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void DeletingACustomerByIdWithServiceReturningTrue()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Deleting a customer by id with service returning true", ((string[])(null)));
-#line 94
-this.ScenarioSetup(scenarioInfo);
-#line 95
- testRunner.Given("I have a customer service that returns true when delete is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 96
- testRunner.And("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
 #line 97
- testRunner.When("I delete customer by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I have a mock customer service that returns true when delete is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 98
+ testRunner.And("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 99
+ testRunner.And("I have an id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 100
+ testRunner.When("I delete customer by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 101
  testRunner.Then("the response should be no content", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -354,17 +360,17 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void DeletingACustomerByIdWithServiceReturningFalse()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Deleting a customer by id with service returning false", ((string[])(null)));
-#line 100
-this.ScenarioSetup(scenarioInfo);
-#line 101
- testRunner.Given("I have a customer service that returns false when delete is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 102
- testRunner.And("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 103
- testRunner.And("I have an invalid id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+this.ScenarioSetup(scenarioInfo);
 #line 104
- testRunner.When("I delete customer by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("I have a mock customer service that returns false when delete is called", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 105
+ testRunner.And("I have a controller", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 106
+ testRunner.And("I have an invalid id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 107
+ testRunner.When("I delete customer by id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 108
  testRunner.Then("the response should be not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
