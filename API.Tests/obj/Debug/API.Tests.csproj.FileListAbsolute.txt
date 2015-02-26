@@ -38,3 +38,5 @@ C:\_\PizzaShack\API.Tests\bin\Debug\System.Net.Http.Formatting.xml
 C:\_\PizzaShack\API.Tests\bin\Debug\Newtonsoft.Json.xml
 C:\_\PizzaShack\API.Tests\obj\Debug\API.Tests.dll
 C:\_\PizzaShack\API.Tests\obj\Debug\API.Tests.pdb
+C:\_\PizzaShack\API.Tests\bin\Debug\EntityFramework.SqlServer.dll
+C:\_\PizzaShack\API.Tests\bin\Debug\EntityFramework.SqlServer.xml

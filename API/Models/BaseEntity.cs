@@ -6,7 +6,7 @@ using System.Web;
 
 namespace API.Models
 {
-    public abstract class BaseEntity
+    public abstract class BaseModel
     {
         [Key]
         public Guid Id { get; set; }

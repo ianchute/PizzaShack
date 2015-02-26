@@ -38,6 +38,13 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="FizzWare.NBuilder">
       <HintPath>..\packages\NBuilder.3.0.1.1\lib\FizzWare.NBuilder.dll</HintPath>
     </Reference>
@@ -61,6 +68,7 @@
       <HintPath>..\packages\structuremap.3.1.4.143\lib\net40\StructureMap.Net4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -82,24 +90,34 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomersController.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\Repositories\CustomerRepository.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomerRepository.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\Services\CustomerService.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomerService.feature</DependentUpon>
     </Compile>
-    <Compile Include="Services.cs" />
+    <Compile Include="Tests\CustomerRepositorySteps.cs" />
     <Compile Include="Tests\CustomersControllerSteps.cs" />
     <Compile Include="Tests\CustomersControllerSteps2.cs" />
     <Compile Include="Tests\CustomerServiceSteps.cs" />
     <Compile Include="Tests\Infra\ContainerTest.cs" />
     <Compile Include="Tests\Infra\MapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\MockDbSet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Features\Controllers\CustomersController.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CustomersController.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\Repositories\CustomerRepository.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CustomerRepository.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\Services\CustomerService.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -118,7 +136,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\Applications\" />
-    <Folder Include="Features\Repositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />

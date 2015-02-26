@@ -6,7 +6,7 @@ using System.Web;
 
 namespace API.Models
 {
-    public class CustomerAddModel : BaseEntity
+    public class CustomerAddModel
     {
         [Required]
         [StringLength(50)]

@@ -58,18 +58,6 @@ namespace API.Tests.Tests.Controllers
             controller.ModelState.AddModelError("", "");
         }
 
-        [Given(@"I have an invalid id")]
-        public void GivenIHaveAnInvalidId()
-        {
-            var validGuids = ScenarioContext.Current.Get<IList<Guid>>("ids");
-            var invalidId = Guid.Empty;
-            do
-            {
-                invalidId = Services.Generator.Guid();
-            } while (validGuids.Contains(invalidId));
-            ScenarioContext.Current.Add("id", invalidId);
-        }
-
         [When(@"I request for a list")]
         public void WhenIRequestForAList()
         {
@@ -156,7 +144,7 @@ namespace API.Tests.Tests.Controllers
         [Given(@"I have an id")]
         public void GivenIHaveAnId()
         {
-            ScenarioContext.Current.Add("id", Services.Generator.Guid());
+            ScenarioContext.Current.Add("id", Guid.NewGuid());
         }
 
         [Then(@"the response should be unprocessable entity")]
