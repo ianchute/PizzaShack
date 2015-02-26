@@ -39,8 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="app\scripts\services\" />
     <Folder Include="app\styles\" />
     <Folder Include="Properties\" />
+    <Folder Include="test\spec\services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitattributes" />
@@ -52,14 +54,17 @@
     <Content Include="app\robots.txt" />
     <Content Include="app\scripts\app.js" />
     <Content Include="app\scripts\controllers\about.js" />
+    <Content Include="app\scripts\controllers\customers.js" />
     <Content Include="app\scripts\controllers\main.js" />
     <Content Include="app\views\about.html" />
+    <Content Include="app\views\customers.html" />
     <Content Include="app\views\main.html" />
     <Content Include="Content\angular.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Gruntfile.js" />
     <Content Include="test\karma.conf.js" />
     <Content Include="test\spec\controllers\about.js" />
+    <Content Include="test\spec\controllers\customers.js" />
     <Content Include="test\spec\controllers\main.js" />
   </ItemGroup>
   <ItemGroup>
