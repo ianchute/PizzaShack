@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using API.Data;
 using API.Models;
 using API.Repositories.Interfaces;
 using API.Services.Interfaces;
+using AutoMapper;
 
 namespace API.Services
 {
@@ -17,24 +19,34 @@ namespace API.Services
             this.Repository = repo;
         }
 
-        public IEnumerable<Models.CustomerViewModel> List()
+        public IEnumerable<Models.CustomerViewModel> List(int page)
         {
             IEnumerable<Models.CustomerViewModel> result = new List<CustomerViewModel>(0);
 
-            try 
+            try
             { 
-                result = Repository.List(); 
+                var customerEntities = Repository.List(page);
+                var customerModels = new List<CustomerViewModel>(customerEntities.Count());
+
+                foreach(var customerEntity in customerEntities)
+                {
+                    var customerModel = Mapper.Map<CustomerViewModel>(customerEntity);
+                    customerModels.Add(customerModel);
+                }
+
+                result = customerModels;
             }
             catch { }
 
             return result;
         }
 
-        public bool Add(Models.CustomerAddModel customer)
+        public bool Add(Models.CustomerAddModel model)
         {
             try
             {
-                Repository.CreateNewCustomer(customer);
+                var entity = Mapper.Map<Customer>(model);
+                Repository.CreateNewCustomer(entity);
             }
             catch
             {
@@ -46,22 +58,24 @@ namespace API.Services
 
         public Models.CustomerViewModel Get(Guid id)
         {
-            Models.CustomerViewModel result = new CustomerViewModel();
+            Models.CustomerViewModel result = null;
 
             try
             {
-                result = Repository.GetCustomerById(id);
+                var entity = Repository.GetCustomerById(id);
+                result = Mapper.Map<CustomerViewModel>(entity);
             }
             catch { }
 
             return result;
         }
 
-        public bool Delete(Guid id)
+        public bool Edit(Models.CustomerEditModel model)
         {
             try
             {
-                Repository.DeleteCustomerById(id);
+                var entity = Mapper.Map<Customer>(model);
+                Repository.UpdateCustomerDetails(entity);
             }
             catch
             {
@@ -71,11 +85,11 @@ namespace API.Services
             return true;
         }
 
-        public bool Edit(Models.CustomerEditModel customer)
+        public bool Delete(Guid id)
         {
             try
             {
-                Repository.UpdateCustomerDetails(customer);
+                Repository.DeleteCustomerById(id);
             }
             catch
             {

@@ -8,6 +8,7 @@ using System.Web;
 using API.Data;
 using API.Models;
 using API.Repositories.Interfaces;
+using API.Services;
 using AutoMapper;
 
 namespace API.Repositories
@@ -21,31 +22,36 @@ namespace API.Repositories
             this.Context = context;
         }
 
-        public IEnumerable<Models.CustomerViewModel> List()
+        public IEnumerable<Customer> List(int page)
         {
-            var result = new List<CustomerViewModel>(Context.Customers.Count());
-            foreach (var customer in Context.Customers)
-                result.Add(Mapper.Map<CustomerViewModel>(customer));
-            return result;
+            var result = new List<Customer>(Constants.CUSTOMER_PAGE_SIZE);
+            var customersInPage = Context.Customers
+                .Skip(page * Constants.CUSTOMER_PAGE_SIZE)
+                .Take(Constants.CUSTOMER_PAGE_SIZE);
+            return customersInPage;
         }
 
-        public void CreateNewCustomer(Models.CustomerAddModel customerAddModel)
+        public void CreateNewCustomer(Customer customer)
         {
-            var entity = Mapper.Map<Customer>(customerAddModel);
-            Context.Customers.Add(entity);
+            Context.Customers.Add(customer);
             Context.Save();
         }
 
-        public Models.CustomerViewModel GetCustomerById(Guid id)
+        public Customer GetCustomerById(Guid id)
         {
             var entity = Context.Customers.Find(id);
-            return Mapper.Map<CustomerViewModel>(entity);
+            return entity;
         }
 
-        public void UpdateCustomerDetails(Models.CustomerEditModel customerEditModel)
+        public void UpdateCustomerDetails(Customer customer)
         {
-            var entity = Mapper.Map<Customer>(customerEditModel);
-            Context.Customers.Add(entity);
+            var currentCustomer = Context.Customers.Find(customer.Id);
+
+            currentCustomer.Address = customer.Address;
+            currentCustomer.FirstName = customer.FirstName;
+            currentCustomer.LastName = customer.LastName;
+            currentCustomer.MobileNumber = customer.MobileNumber;
+
             Context.Save();
         }
 

@@ -8,7 +8,7 @@ namespace API.Services.Interfaces
 {
     public interface ICustomerService
     {
-        IEnumerable<Models.CustomerViewModel> List();
+        IEnumerable<Models.CustomerViewModel> List(int page);
 
         bool Add(Models.CustomerAddModel customerAddModel);
 

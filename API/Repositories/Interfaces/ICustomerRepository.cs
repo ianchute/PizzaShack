@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using API.Data;
 
 namespace API.Repositories.Interfaces
 {
     public interface ICustomerRepository
     {
-        IEnumerable<Models.CustomerViewModel> List();
+        IEnumerable<Customer> List(int page);
 
-        void CreateNewCustomer(Models.CustomerAddModel customerAddModel);
+        void CreateNewCustomer(Customer customer);
 
-        Models.CustomerViewModel GetCustomerById(Guid guid);
+        Customer GetCustomerById(Guid id);
 
-        void UpdateCustomerDetails(Models.CustomerEditModel customerEditModel);
+        void UpdateCustomerDetails(Customer customerEditModel);
 
-        void DeleteCustomerById(Guid guid);
+        void DeleteCustomerById(Guid id);
     }
 }
