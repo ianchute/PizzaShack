@@ -54,7 +54,7 @@ namespace API.Services.Tests
         }
 
         [Test]
-        public void ListShouldReturnAnEmptyEnumerableIfRepositoryThrowsExceptions()
+        public void ListShouldReturnEmptyEnumerableIfRepositoryThrowsExceptions()
         {
             // Arrange
             var mock = new Mock<ICustomerRepository>();

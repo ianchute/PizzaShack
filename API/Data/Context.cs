@@ -4,7 +4,6 @@ namespace API.Data
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
-    using System.Collections.Generic;
 
     public partial class Context : DbContext, IContext
     {
@@ -12,6 +11,15 @@ namespace API.Data
             : base("name=Context")
         {
         }
+
+        public virtual IDbSet<Customer> Customers { get; set; }
+        public virtual IDbSet<DeliveryPerson> DeliveryPersons { get; set; }
+        public virtual IDbSet<Order> Orders { get; set; }
+        public virtual IDbSet<Pizza> Pizzas { get; set; }
+        public virtual IDbSet<PizzaFlavor> PizzaFlavors { get; set; }
+        public virtual IDbSet<PizzaPromo> PizzaPromoes { get; set; }
+        public virtual IDbSet<PizzaSize> PizzaSizes { get; set; }
+        public virtual IDbSet<Store> Stores { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -100,54 +108,6 @@ namespace API.Data
         public void Save()
         {
             this.SaveChanges();
-        }
-
-        public IDbSet<Customer> Customers
-        {
-            get { return this.Set<Customer>(); }
-            set { }
-        }
-
-        public IDbSet<DeliveryPerson> DeliveryPersons
-        {
-            get { return this.Set<DeliveryPerson>(); }
-            set { }
-        }
-
-        public IDbSet<Order> Orders
-        {
-            get { return this.Set<Order>(); }
-            set { }
-        }
-
-        public IDbSet<PizzaFlavor> PizzaFlavors
-        {
-            get { return this.Set<PizzaFlavor>(); }
-            set { }
-        }
-
-        public IDbSet<PizzaPromo> PizzaPromoes
-        {
-            get { return this.Set<PizzaPromo>(); }
-            set { }
-        }
-
-        public IDbSet<Pizza> Pizzas
-        {
-            get { return this.Set<Pizza>(); }
-            set { }
-        }
-
-        public IDbSet<PizzaSize> PizzaSizes
-        {
-            get { return this.Set<PizzaSize>(); }
-            set { }
-        }
-
-        public IDbSet<Store> Stores
-        {
-            get { return this.Set<Store>(); }
-            set { }
         }
     }
 }

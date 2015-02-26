@@ -1,1 +1,250 @@
-<p>This is the customers view.</p>
+<div>
+    <h3>Customers</h3>
+    <br />
+    <div class="alert alert-warning" ng-hide="outerError == null">
+        <div class="label label-warning">
+            <span class="glyphicon glyphicon-warning-sign"></span>
+            STATUS {{outerError.status}}
+        </div>
+        <br /><br />
+        <b>Errors:</b>
+        <ul>
+            <li ng-repeat="error in outerError.data"></li>
+        </ul>
+    </div>
+    <br />
+    <div ng-show="outerError == null">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+            <span class="glyphicon glyphicon-plus"></span>
+            Add New Customer
+        </button>
+        <br /><br />
+        <table class="table table-striped" ng-init="page(0)">
+            <thead>
+                <tr>
+                    <th>Last Name</th>
+                    <th>First Name</th>
+                    <th>Address</th>
+                    <th>Mobile Number</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="customer in customers">
+                <tr>
+                    <td>{{customer.LastName}}</td>
+                    <td>{{customer.FirstName}}</td>
+                    <td>{{customer.Address}}</td>
+                    <td>{{customer.MobileNumber}}</td>
+                    <td class="btn-group">
+                        <button class="btn btn-info" ng-click="getCustomer(customer.Id)">
+                            <span class="glyphicon glyphicon-book"></span>
+                        </button>
+                        <button class="btn btn-default" ng-click="initEditCustomer(customer.Id)">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                        <button class="btn btn-danger" ng-click="initDeleteCustomer(customer.Id)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                        <button class="btn btn-primary" ng-click="">
+                            <span class="glyphicon glyphicon-cutlery"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<!-- Add Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="Add Customer" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add New Customer</h4>
+
+                
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body">
+
+                <!-- Validation -->
+                <div class="alert alert-warning" ng-hide="innerError == null">
+                    <b><span class="glyphicon glyphicon-warning-sign"></span> Errors:</b>
+                    <ul>
+                        <li ng-repeat="error in innerError">{{error}}</li>
+                    </ul>
+                </div>
+
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-3">First Name:</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" ng-model="instance.FirstName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3">Last Name:</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" ng-model="instance.LastName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3">Address:</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" ng-model="instance.Address" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3">Mobile Number:</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" ng-model="instance.MobileNumber" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="addCustomer()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Details Modal -->
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="Customer Details" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Customer Details</h4>
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dt>Last Name</dt>
+                    <dd>{{instance.LastName}}</dd>
+                    <dt>First Name</dt>
+                    <dd>{{instance.FirstName}}</dd>
+                    <dt>Address</dt>
+                    <dd>{{instance.Address}}</dd>
+                    <dt>Mobile Number</dt>
+                    <dd>{{instance.MobileNumber}}</dd>
+                </dl>
+            </div>
+
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="Edit Customer Details" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit Customer Details</h4>
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body">
+
+                <!-- Validation -->
+                <div class="alert alert-warning" ng-hide="error.length == 0">
+                    <b><span class="glyphicon glyphicon-warning-sign"></span> Errors:</b>
+                    <ul>
+                        <li ng-repeat="errorMsg in error">{{errorMsg}}</li>
+                    </ul>
+                </div>
+
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-3">First Name:</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" ng-model="instance.FirstName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3">Last Name:</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" ng-model="instance.LastName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3">Address:</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" ng-model="instance.Address" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3">Mobile Number:</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" ng-model="instance.MobileNumber" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="editCustomer()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="Delete Customer" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Delete Customer</h4>
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dt>Last Name</dt>
+                    <dd>{{instance.LastName}}</dd>
+                    <dt>First Name</dt>
+                    <dd>{{instance.FirstName}}</dd>
+                    <dt>Address</dt>
+                    <dd>{{instance.Address}}</dd>
+                    <dt>Mobile Number</dt>
+                    <dd>{{instance.MobileNumber}}</dd>
+                </dl>
+            </div>
+
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" ng-click="deleteCustomer()">
+                    <span class="glyphicon glyphicon-warning-sign"></span>
+                    Delete Customer
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pizza Modal -->

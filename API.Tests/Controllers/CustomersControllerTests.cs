@@ -63,25 +63,6 @@ namespace API.Controllers.Tests
         }
 
         [Test]
-        public void ListShouldReturnNotFoundIfServiceListReturnsNull()
-        {
-            // Arrange
-            var mock = new Mock<ICustomerService>();
-            mock.Setup<IEnumerable<CustomerViewModel>>(_ => _.List(0))
-                .Returns<IEnumerable<CustomerViewModel>>(null);
-            Service = mock.Object;
-            Controller = new CustomersController(Service);
-            Controller.Configuration = new HttpConfiguration();
-            Controller.Request = new HttpRequestMessage();
-
-            // Act
-            var result = Controller.List(0);
-
-            // Assert
-            Assert.AreEqual(HttpStatusCode.NotFound, result.StatusCode);
-        }
-
-        [Test]
         public void AddShouldReturnCreatedIfServiceAddReturnsTrue()
         {
             // Arrange

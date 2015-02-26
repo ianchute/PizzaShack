@@ -5,7 +5,7 @@ using System.Web;
 
 namespace API.Models
 {
-    public class CustomerViewModel
+    public class CustomerViewModel : BaseModel
     {
         public string FirstName { get; set; }
 

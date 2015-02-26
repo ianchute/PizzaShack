@@ -19,19 +19,21 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage List(int page)
+        public HttpResponseMessage List([FromBody]int id)
         {
-            var customers = Service.List(page);
-            if (customers == null)
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+            var customers = Service.List(id);
             return Request.CreateResponse(HttpStatusCode.OK, customers);
         }
 
         [HttpPost]
-        public HttpResponseMessage Add(CustomerAddModel addModel)
+        public HttpResponseMessage Add([FromBody]CustomerAddModel addModel)
         {
             if (!ModelState.IsValid)
-                return Request.CreateResponse((HttpStatusCode)422, "Unprocessable Entity");
+            {
+                var validationErrors = ModelState.Values
+                    .SelectMany(_ => _.Errors.Select(x => x.ErrorMessage));
+                return Request.CreateResponse((HttpStatusCode)422, validationErrors);
+            }
             var added = Service.Add(addModel);
             if(added)
                 return Request.CreateResponse(HttpStatusCode.Created);
@@ -48,7 +50,7 @@ namespace API.Controllers
         }
 
         [HttpPut]
-        public HttpResponseMessage Edit(CustomerEditModel editModel)
+        public HttpResponseMessage Edit([FromBody]CustomerEditModel editModel)
         {
             if (!ModelState.IsValid)
                 return Request.CreateResponse((HttpStatusCode)422, "Unprocessable Entity");

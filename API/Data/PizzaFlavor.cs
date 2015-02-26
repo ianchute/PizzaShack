@@ -7,12 +7,14 @@ namespace API.Data
     using System.Data.Entity.Spatial;
 
     [Table("PizzaFlavor")]
-    public partial class PizzaFlavor : BaseEntity
+    public partial class PizzaFlavor
     {
         public PizzaFlavor()
         {
             Pizzas = new HashSet<Pizza>();
         }
+
+        public Guid Id { get; set; }
 
         [Required]
         [StringLength(50)]

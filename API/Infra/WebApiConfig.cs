@@ -14,8 +14,8 @@ namespace API.Infra
             config.DependencyResolver = new DependencyResolver();
 
             // CORS Support.
-            var cors = new EnableCorsAttribute("*", "*", "*");
-            config.EnableCors();
+            var cors = new EnableCorsAttribute("http://localhost:9000", "*", "*");
+            config.EnableCors(cors);
 
             // Shortened Route.
             config.MapHttpAttributeRoutes();

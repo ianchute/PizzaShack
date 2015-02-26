@@ -7,12 +7,14 @@ namespace API.Data
     using System.Data.Entity.Spatial;
 
     [Table("DeliveryPerson")]
-    public partial class DeliveryPerson : BaseEntity
+    public partial class DeliveryPerson
     {
         public DeliveryPerson()
         {
             Orders = new HashSet<Order>();
         }
+
+        public Guid Id { get; set; }
 
         [Required]
         [StringLength(50)]

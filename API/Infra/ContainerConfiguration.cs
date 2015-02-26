@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using API.Controllers;
+using API.Services.Interfaces;
 
 namespace API.Infra
 {
@@ -13,6 +15,8 @@ namespace API.Infra
                 x.Assembly("API");
                 x.WithDefaultConventions();
             });
+            _.ForConcreteType<CustomersController>().Configure
+                .Ctor<ICustomerService>().IsTheDefault();
         }
     }
 }
