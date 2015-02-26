@@ -7,10 +7,8 @@ namespace API.Data
     using System.Data.Entity.Spatial;
 
     [Table("Pizza")]
-    public partial class Pizza
+    public partial class Pizza : BaseEntity
     {
-        public Guid Id { get; set; }
-
         public DateTime TimeCooked { get; set; }
 
         public Guid OrderId { get; set; }

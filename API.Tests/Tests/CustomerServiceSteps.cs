@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using API.Infra.Exceptions;
 using API.Models;
 using API.Repositories.Interfaces;
 using API.Services;
@@ -35,15 +34,15 @@ namespace API.Tests.Tests
         {
             var mockRepository = new Mock<ICustomerRepository>();
             mockRepository.Setup<IEnumerable<CustomerViewModel>>(_ => _.List())
-                .Throws<RepositoryException>();
+                .Throws<Exception>();
             mockRepository.Setup(_ => _.CreateNewCustomer(It.IsAny<CustomerAddModel>()))
-                .Throws<RepositoryException>();
+                .Throws<Exception>();
             mockRepository.Setup<CustomerViewModel>(_ => _.GetCustomerById(It.IsAny<Guid>()))
-                .Throws<RepositoryException>();
+                .Throws<Exception>();
             mockRepository.Setup(_ => _.UpdateCustomerDetails(It.IsAny<CustomerEditModel>()))
-                .Throws<RepositoryException>();
+                .Throws<Exception>();
             mockRepository.Setup(_ => _.DeleteCustomerById(It.IsAny<Guid>()))
-                .Throws<RepositoryException>();
+                .Throws<Exception>();
 
             ScenarioContext.Current.Add("customerRepo", mockRepository.Object);
         }
