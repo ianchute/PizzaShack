@@ -14,6 +14,18 @@ angular.module('frontendApp')
       $scope.outerError = null;
       $scope.innerError = null;
       $scope.loading = true;
+      $scope.pageLoading = true;
+
+      // Events.
+      $("#addModal").keyup(function (event) {
+          if (event.keyCode == 13) { $scope.addDPerson(); }
+      });
+      $("#editModal").keyup(function (event) {
+          if (event.keyCode == 13) { $scope.editDPerson(); }
+      });
+      $("#deleteModal").keyup(function (event) {
+          if (event.keyCode == 13) { $scope.deleteDPerson(); }
+      });
 
       // Clear errors and current instance.
       $scope.clear = function () {
@@ -24,12 +36,18 @@ angular.module('frontendApp')
 
       // Load delivery person page.
       $scope.page = function (page) {
-          $scope.clear();
+          $scope.loading = true;
           $timeout(function () {
               DeliveryPersonRepository.list(page)
             .success(function (data) {
                 $scope.dPersons = data;
                 $scope.loading = false;
+                $scope.pageLoading = false;
+
+                $scope.clear();
+                $('#addModal').modal('hide');
+                $('#editModal').modal('hide');
+                $('#deleteModal').modal('hide');
             })
             .error(function (data, status) {
                 $scope.outerError = { data: data, status: status };
@@ -43,7 +61,6 @@ angular.module('frontendApp')
           DeliveryPersonRepository.add($scope.instance)
             .success(function () {
                 $scope.page(0);
-                $('#addModal').modal('hide');
             })
             .error(function (data, status) {
                 $scope.innerError = data;
@@ -66,6 +83,7 @@ angular.module('frontendApp')
       // Edit customer.
       $scope.initEditDPerson = function (id) {
           $scope.clear();
+
           DeliveryPersonRepository.getById(id)
             .success(function (data) {
                 $scope.instance = data;
@@ -79,7 +97,6 @@ angular.module('frontendApp')
           DeliveryPersonRepository.edit($scope.instance)
             .success(function () {
                 $scope.page(0);
-                $('#editModal').modal('hide');
             })
             .error(function (data, status) {
                 $scope.innerError = data;
@@ -102,7 +119,6 @@ angular.module('frontendApp')
           DeliveryPersonRepository.deleteById($scope.instance.Id)
             .success(function () {
                 $scope.page(0);
-                $('#deleteModal').modal('hide');
             })
             .error(function (data, status) {
                 $scope.innerError = data;

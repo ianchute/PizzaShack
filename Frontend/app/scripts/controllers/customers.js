@@ -14,6 +14,18 @@ angular.module('frontendApp')
       $scope.outerError = null;
       $scope.innerError = null;
       $scope.loading = true;
+      $scope.pageLoading = true;
+
+      // Events.
+      $("#addModal").keyup(function (event) {
+          if (event.keyCode == 13) { $scope.addCustomer(); }
+      });
+      $("#editModal").keyup(function (event) {
+          if (event.keyCode == 13) { $scope.editCustomer(); }
+      });
+      $("#deleteModal").keyup(function (event) {
+          if (event.keyCode == 13) { $scope.deleteCustomer(); }
+      });
 
       // Clear errors and current instance.
       $scope.clear = function () {
@@ -24,12 +36,18 @@ angular.module('frontendApp')
 
       // Load customer page.
       $scope.page = function (page) {
-          $scope.clear();
+          $scope.loading = true;
           $timeout(function () {
               CustomerRepository.list(page)
             .success(function (data) {
                 $scope.customers = data;
                 $scope.loading = false;
+                $scope.pageLoading = false;
+
+                $scope.clear();
+                $('#addModal').modal('hide');
+                $('#editModal').modal('hide');
+                $('#deleteModal').modal('hide');
             })
             .error(function (data, status) {
                 $scope.outerError = { data: data, status: status };
@@ -45,7 +63,6 @@ angular.module('frontendApp')
           CustomerRepository.add($scope.instance)
             .success(function () {
                 $scope.page(0);
-                $('#addModal').modal('hide');
             })
             .error(function (data, status) {
                 $scope.innerError = data;
@@ -79,7 +96,6 @@ angular.module('frontendApp')
           CustomerRepository.edit($scope.instance)
             .success(function () {
                 $scope.page(0);
-                $('#editModal').modal('hide');
             })
             .error(function (data, status) {
                 $scope.innerError = data;
@@ -102,7 +118,6 @@ angular.module('frontendApp')
           CustomerRepository.deleteById($scope.instance.Id)
             .success(function () {
                 $scope.page(0);
-                $('#deleteModal').modal('hide');
             })
             .error(function (data, status) {
                 $scope.innerError = data;

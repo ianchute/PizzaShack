@@ -4,7 +4,7 @@
 
     <div class="row">
         <!-- Loading -->
-        <div ng-show="loading" class="col-md-offset-5 col-md-4">
+        <div ng-show="pageLoading" class="col-md-offset-5 col-md-4">
             <div class="wobblebar"></div>
             <br /><br />
         </div>
@@ -26,7 +26,7 @@
     </div>
 
     <!-- Content -->
-    <div ng-show="outerError == null && !loading">
+    <div ng-show="outerError == null && !pageLoading">
         <button type="button" class="btn btn-primary" ng-click="clear()" data-toggle="modal" data-target="#addModal">
             <span class="glyphicon glyphicon-plus"></span>
             Add New Flavor
@@ -68,7 +68,7 @@
 
             <!-- Header -->
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button ng-hide="loading" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Add Flavor</h4>
             </div>
 
@@ -95,8 +95,9 @@
 
             <!-- Footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" ng-click="addFlavor()">Save changes</button>
+                <button ng-hide="loading" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button ng-hide="loading" type="button" class="btn btn-primary" ng-click="addFlavor()">Save changes</button>
+                <span ng-show="loading" class="wobblebar"></span>
             </div>
         </div>
     </div>
@@ -136,7 +137,7 @@
 
             <!-- Header -->
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button ng-hide="loading" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Delete Flavor</h4>
             </div>
 
@@ -150,11 +151,12 @@
 
             <!-- Footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger" ng-click="deleteFlavor()">
+                <button ng-hide="loading" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button ng-hide="loading" type="button" class="btn btn-danger" ng-click="deleteFlavor()">
                     <span class="glyphicon glyphicon-warning-sign"></span>
                     Delete Flavor
                 </button>
+                <span ng-show="loading" class="wobblebar"></span>
             </div>
         </div>
     </div>

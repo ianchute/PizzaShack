@@ -14,6 +14,15 @@ angular.module('frontendApp')
       $scope.outerError = null;
       $scope.innerError = null;
       $scope.loading = true;
+      $scope.pageLoading = true;
+
+      // Events.
+      $("#addModal").keyup(function (event) {
+          if (event.keyCode == 13) { $scope.addFlavor(); }
+      });
+      $("#deleteModal").keyup(function (event) {
+          if (event.keyCode == 13) { $scope.deleteFlavor(); }
+      });
 
       // Clear errors and current instance.
       $scope.clear = function () {
@@ -24,12 +33,17 @@ angular.module('frontendApp')
 
       // Load flavor page.
       $scope.page = function () {
-          $scope.clear();
+          $scope.loading = true;
           $timeout(function () {
               FlavorRepository.list()
             .success(function (data) {
                 $scope.flavors = data;
                 $scope.loading = false;
+                $scope.pageLoading = false;
+
+                $scope.clear();
+                $('#addModal').modal('hide');
+                $('#deleteModal').modal('hide');
             })
             .error(function (data, status) {
                 $scope.outerError = { data: data, status: status };
@@ -44,7 +58,6 @@ angular.module('frontendApp')
           FlavorRepository.add($scope.instance)
             .success(function () {
                 $scope.page();
-                $('#addModal').modal('hide');
             })
             .error(function (data, status) {
                 $scope.innerError = data;
@@ -80,7 +93,6 @@ angular.module('frontendApp')
           FlavorRepository.deleteById($scope.instance.Id)
             .success(function () {
                 $scope.page();
-                $('#deleteModal').modal('hide');
             })
             .error(function (data, status) {
                 $scope.innerError = data;
