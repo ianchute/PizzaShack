@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc function
- * @name frontendApp.controller:CustomersCtrl
+ * @name frontendApp.controller:DeliverypersonCtrl
  * @description
- * # CustomersCtrl
+ * # DeliverypersonCtrl
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('CustomersCtrl', function ($scope, CustomerRepository) {
-      $scope.customers = [];
+  .controller('DeliveryPersonsCtrl', function ($scope, DeliveryPersonRepository) {
+      $scope.dPersons = [];
       $scope.instance = {};
       $scope.outerError = null;
       $scope.innerError = null;
@@ -22,12 +22,12 @@ angular.module('frontendApp')
           $scope.instance = {};
       }
 
-      // Load customer page.
+      // Load delivery person page.
       $scope.page = function (page) {
           $scope.clear();
-          CustomerRepository.list(page)
+          DeliveryPersonRepository.list(page)
             .success(function (data) {
-                $scope.customers = data;
+                $scope.dPersons = data;
                 $scope.loading = false;
             })
             .error(function (data, status) {
@@ -36,9 +36,9 @@ angular.module('frontendApp')
             });
       }
 
-      // Add customer.
-      $scope.addCustomer = function () {
-          CustomerRepository.add($scope.instance)
+      // Add delivery person.
+      $scope.addDPerson = function () {
+          DeliveryPersonRepository.add($scope.instance)
             .success(function () {
                 $scope.page(0);
                 $('#addModal').modal('hide');
@@ -48,10 +48,10 @@ angular.module('frontendApp')
             });
       }
 
-      // Get customer.
-      $scope.getCustomer = function (id) {
+      // Get delivery person.
+      $scope.getDPerson = function (id) {
           $scope.clear();
-          CustomerRepository.getById(id)
+          DeliveryPersonRepository.getById(id)
             .success(function (data) {
                 $scope.instance = data;
                 $('#detailsModal').modal('show');
@@ -62,17 +62,19 @@ angular.module('frontendApp')
       }
 
       // Edit customer.
-      $scope.initEditCustomer = function (id) {
+      $scope.initEditDPerson = function (id) {
           $scope.clear();
-          CustomerRepository.getById(id)
+          DeliveryPersonRepository.getById(id)
             .success(function (data) {
                 $scope.instance = data;
                 $('#editModal').modal('show');
             })
-            .error(function (data, status) { $scope.outerError = data; });
+            .error(function (data, status) {
+                $scope.outerError = data;
+            });
       }
-      $scope.editCustomer = function () {
-          CustomerRepository.edit($scope.instance)
+      $scope.editDPerson = function () {
+          DeliveryPersonRepository.edit($scope.instance)
             .success(function () {
                 $scope.page(0);
                 $('#editModal').modal('hide');
@@ -83,9 +85,9 @@ angular.module('frontendApp')
       }
 
       // Delete customer.
-      $scope.initDeleteCustomer = function (id) {
+      $scope.initDeleteDPerson = function (id) {
           $scope.clear();
-          CustomerRepository.getById(id)
+          DeliveryPersonRepository.getById(id)
             .success(function (data) {
                 $scope.instance = data;
                 $('#deleteModal').modal('show');
@@ -94,8 +96,8 @@ angular.module('frontendApp')
                 $scope.outerError = data;
             });
       }
-      $scope.deleteCustomer = function () {
-          CustomerRepository.deleteById($scope.instance.Id)
+      $scope.deleteDPerson = function () {
+          DeliveryPersonRepository.deleteById($scope.instance.Id)
             .success(function () {
                 $scope.page(0);
                 $('#deleteModal').modal('hide');

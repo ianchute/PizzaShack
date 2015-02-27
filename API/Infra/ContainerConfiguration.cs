@@ -17,6 +17,8 @@ namespace API.Infra
             });
             _.ForConcreteType<CustomersController>().Configure
                 .Ctor<ICustomerService>().IsTheDefault();
+            _.ForConcreteType<DeliveryPersonsController>().Configure
+                .Ctor<IDeliveryPersonService>().IsTheDefault();
         }
     }
 }

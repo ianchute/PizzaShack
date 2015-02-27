@@ -13,7 +13,7 @@ angular.module('frontendApp')
       return {
           list :        function (page)     { return $http.get(CustomerApiPath, page); },
           add:          function (customer) { return $http.post(CustomerApiPath, customer); },
-          getById:      function (id) { return $http.get(CustomerApiPath + id); },
+          getById:      function (id)       { return $http.get(CustomerApiPath + id); },
           edit:         function (customer) { return $http.put(CustomerApiPath, customer); },
           deleteById:   function (id)       { return $http.delete(CustomerApiPath + id); }
       };

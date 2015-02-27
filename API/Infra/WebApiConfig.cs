@@ -21,6 +21,12 @@ namespace API.Infra
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+                name: "Ping",
+                routeTemplate: "",
+                defaults: new { controller = "Ping", action = "Ping" }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "API",
                 routeTemplate: "{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }

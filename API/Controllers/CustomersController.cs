@@ -53,7 +53,11 @@ namespace API.Controllers
         public HttpResponseMessage Edit([FromBody]CustomerEditModel editModel)
         {
             if (!ModelState.IsValid)
-                return Request.CreateResponse((HttpStatusCode)422, "Unprocessable Entity");
+            {
+                var validationErrors = ModelState.Values
+                    .SelectMany(_ => _.Errors.Select(x => x.ErrorMessage));
+                return Request.CreateResponse((HttpStatusCode)422, validationErrors);
+            }
             var edited = Service.Edit(editModel);
             if (edited)
                 return Request.CreateResponse(HttpStatusCode.OK);

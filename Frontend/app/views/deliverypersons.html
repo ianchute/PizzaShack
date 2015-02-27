@@ -1,10 +1,10 @@
 <div>
-    <h3>Customers</h3>
+    <h3>Delivery Personnel</h3>
     <br />
 
     <div class="row">
         <!-- Loading -->
-        <div ng-show="loading" class="col-md-offset-5 col-md-4" >
+        <div ng-show="loading" class="col-md-offset-5 col-md-4">
             <div class="wobblebar"></div>
             <br /><br />
         </div>
@@ -29,7 +29,7 @@
     <div ng-show="outerError == null && !loading">
         <button type="button" class="btn btn-primary" ng-click="clear()" data-toggle="modal" data-target="#addModal">
             <span class="glyphicon glyphicon-plus"></span>
-            Add New Customer
+            Add New Delivery Person
         </button>
         <br /><br />
         <table class="table table-striped" ng-init="page(0)">
@@ -37,29 +37,22 @@
                 <tr>
                     <th>Last Name</th>
                     <th>First Name</th>
-                    <th>Address</th> 
-                    <th>Mobile Number</th>
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody ng-repeat="customer in customers">
+            <tbody ng-repeat="dPerson in dPersons">
                 <tr>
-                    <td>{{customer.LastName}}</td>
-                    <td>{{customer.FirstName}}</td>
-                    <td>{{customer.Address}}</td>
-                    <td>{{customer.MobileNumber}}</td>
+                    <td>{{dPerson.LastName}}</td>
+                    <td>{{dPerson.FirstName}}</td>
                     <td class="btn-group">
-                        <button class="btn btn-info" ng-click="getCustomer(customer.Id)">
+                        <button class="btn btn-info" ng-click="getDPerson(dPerson.Id)">
                             <span class="glyphicon glyphicon-book"></span>
                         </button>
-                        <button class="btn btn-default" ng-click="initEditCustomer(customer.Id)">
+                        <button class="btn btn-default" ng-click="initEditDPerson(dPerson.Id)">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
-                        <button class="btn btn-danger" ng-click="initDeleteCustomer(customer.Id)">
+                        <button class="btn btn-danger" ng-click="initDeleteDPerson(dPerson.Id)">
                             <span class="glyphicon glyphicon-trash"></span>
-                        </button>
-                        <button class="btn btn-primary" ng-click="">
-                            <span class="glyphicon glyphicon-cutlery"></span>
                         </button>
                     </td>
                 </tr>
@@ -71,14 +64,14 @@
 </div>
 
 <!-- Add Modal -->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="Add Customer" aria-hidden="true">
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="Add Delivery Person" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <!-- Header -->
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Add New Customer</h4>
+                <h4 class="modal-title" id="myModalLabel">Add New Delivery Person</h4>
             </div>
 
             <!-- Body -->
@@ -105,39 +98,27 @@
                             <input type="text" class="form-control" ng-model="instance.LastName" />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-3">Address:</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" ng-model="instance.Address" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3">Mobile Number:</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" ng-model="instance.MobileNumber" />
-                        </div>
-                    </div>
                 </form>
             </div>
 
             <!-- Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" ng-click="addCustomer()">Save changes</button>
+                <button type="button" class="btn btn-primary" ng-click="addDPerson()">Save changes</button>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Details Modal -->
-<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="Customer Details" aria-hidden="true">
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="Delivery Person Details" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <!-- Header -->
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Customer Details</h4>
+                <h4 class="modal-title" id="myModalLabel">Delivery Person Details</h4>
             </div>
 
             <!-- Body -->
@@ -147,10 +128,6 @@
                     <dd>{{instance.LastName}}</dd>
                     <dt>First Name</dt>
                     <dd>{{instance.FirstName}}</dd>
-                    <dt>Address</dt>
-                    <dd>{{instance.Address}}</dd>
-                    <dt>Mobile Number</dt>
-                    <dd>{{instance.MobileNumber}}</dd>
                 </dl>
             </div>
 
@@ -163,14 +140,14 @@
 </div>
 
 <!-- Edit Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="Edit Customer Details" aria-hidden="true">
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="Edit Delivery Person Details" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <!-- Header -->
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Edit Customer Details</h4>
+                <h4 class="modal-title" id="myModalLabel">Edit Delivery Person Details</h4>
             </div>
 
             <!-- Body -->
@@ -197,39 +174,27 @@
                             <input type="text" class="form-control" ng-model="instance.LastName" />
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-md-3">Address:</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" ng-model="instance.Address" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3">Mobile Number:</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" ng-model="instance.MobileNumber" />
-                        </div>
-                    </div>
                 </form>
             </div>
 
             <!-- Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" ng-click="editCustomer()">Save changes</button>
+                <button type="button" class="btn btn-primary" ng-click="editDPerson()">Save changes</button>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Delete Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="Delete Customer" aria-hidden="true">
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="Delete Delivery Person" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <!-- Header -->
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Delete Customer</h4>
+                <h4 class="modal-title" id="myModalLabel">Delete Delivery Person</h4>
             </div>
 
             <!-- Body -->
@@ -239,23 +204,17 @@
                     <dd>{{instance.LastName}}</dd>
                     <dt>First Name</dt>
                     <dd>{{instance.FirstName}}</dd>
-                    <dt>Address</dt>
-                    <dd>{{instance.Address}}</dd>
-                    <dt>Mobile Number</dt>
-                    <dd>{{instance.MobileNumber}}</dd>
                 </dl>
             </div>
 
             <!-- Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger" ng-click="deleteCustomer()">
+                <button type="button" class="btn btn-danger" ng-click="deleteDPerson()">
                     <span class="glyphicon glyphicon-warning-sign"></span>
-                    Delete Customer
+                    Delete Delivery Person
                 </button>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Pizza Modal -->

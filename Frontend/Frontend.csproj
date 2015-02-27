@@ -39,7 +39,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="app\styles\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
@@ -53,10 +52,15 @@
     <Content Include="app\scripts\app.js" />
     <Content Include="app\scripts\controllers\about.js" />
     <Content Include="app\scripts\controllers\customers.js" />
+    <Content Include="app\scripts\controllers\deliverypersons.js" />
     <Content Include="app\scripts\controllers\main.js" />
     <Content Include="app\scripts\services\apipath.js" />
     <Content Include="app\scripts\services\customerrepository.js" />
+    <Content Include="app\scripts\services\deliverypersonrepository.js" />
+    <Content Include="app\scripts\services\pingservice.js" />
+    <Content Include="app\styles\site.css" />
     <Content Include="app\views\customers.html" />
+    <Content Include="app\views\deliverypersons.html" />
     <Content Include="app\views\main.html" />
     <Content Include="Content\angular.js" />
     <Content Include="Content\bootstrap.css" />

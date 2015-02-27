@@ -24,14 +24,13 @@ namespace API.Repositories
 
         public IEnumerable<Customer> List(int page)
         {
-            var result = new List<Customer>(Constants.CUSTOMER_PAGE_SIZE);
-            var customersInPage = Context.Customers
+            var result = Context.Customers
                 .OrderBy(_ => _.LastName)
                 .ThenBy(_ => _.FirstName)
                 .Skip(page * Constants.CUSTOMER_PAGE_SIZE)
                 .Take(Constants.CUSTOMER_PAGE_SIZE)
                 .ToList();
-            return customersInPage;
+            return result;
         }
 
         public void CreateNewCustomer(Customer customer)
