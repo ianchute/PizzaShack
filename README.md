@@ -30,10 +30,8 @@ How to water:
  7. Install bower by executing <b>npm install bower</b>
  8. <b>bower install</b>
  9. <b>npm install grunt</b>
-10. To run the website:
- 
-    First, run the backend (F5/F11 in Visual Studio).<br>
-
-    Then execute <b>grunt serve</b> within the Frontend folder.
+ 10. To run the website:<br>
+     First, run the backend (F5/F11 in Visual Studio).<br>
+     Then execute <b>grunt serve</b> within the Frontend folder.
 
 For any problems encountered, contact ianchute@hotmail.com
