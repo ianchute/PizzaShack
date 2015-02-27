@@ -64,21 +64,20 @@ Currently, it is still at its infant stage and it doesn't do much.</p>
 
 <ol>
 <li>Open the solution.</li>
-<li>Open NuGet Console, click 'Restore'</li>
+<li>Build the solution.</li>
 <li>Install <a href="http://nodejs.org/dist/v0.10.0/x64/node-v0.10.36-x64.msi">http://nodejs.org/dist/v0.10.0/x64/node-v0.10.36-x64.msi</a> (or, the 32-bit one)
--- if you have another version, you will need to uninstall it so that the yeoman scaffolder will work properly.</li>
-<li>If you have NodeJS before, ensure that %appdata%/npm and %appdata%/npm-cache are both empty</li>
+-- if you have another version, you will need to uninstall it so that the yeoman scaffolder will work properly.
+(If you had NodeJS before, ensure that %appdata%/npm and %appdata%/npm-cache are both empty)</li>
 <li>Install msysgit </li>
 <li>Add mysysgit's bin and cmd folders to the PATH environmental variable</li>
-<li>In the FrontEnd Folder, execute <b>npm install -g yo bower grunt-cli gulp</b>
+<li>In the FrontEnd Folder, execute <b>npm install &amp; bower install</b>
 </li>
 <li><b>npm install grunt</b></li>
-<li><b>npm install -g generator-angular</b></li>
-<li><b>yo angular</b></li>
-<li>Attach the database (Database/PizzaShack.mdf) to your SQL server installation (localhost)
+<li>Attach the database (Database/PizzaShack.mdf) to your SQL server installation (.)
 (NOTE: depending on your setup, you may need to fix the connection string in the project)</li>
-<li>To run the website, <b>execute grunt serve</b>
-</li>
+<li>To run the website:
+First, run the backend (F5/F11 in Visual Studio)
+Then execute <b>grunt serve</b> within the Frontend folder.</li>
 </ol>
 
 <p>For any problems encountered, contact <a href="mailto:ianchute@hotmail.com">ianchute@hotmail.com</a></p>
