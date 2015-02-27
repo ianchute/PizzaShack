@@ -151,7 +151,6 @@
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\PizzaAddModel.cs" />
     <Compile Include="Models\PizzaFlavorAddModel.cs" />
-    <Compile Include="Models\PizzaFlavorEditModel.cs" />
     <Compile Include="Models\PizzaFlavorViewModel.cs" />
     <Compile Include="Models\PizzaPromoAddModel.cs" />
     <Compile Include="Models\PizzaPromoViewModel.cs" />
@@ -166,6 +165,8 @@
     <Compile Include="Repositories\DeliveryPersonRepository.cs" />
     <Compile Include="Repositories\Interfaces\ICustomerRepository.cs" />
     <Compile Include="Repositories\Interfaces\IDeliveryPersonRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IPizzaFlavorRepository.cs" />
+    <Compile Include="Repositories\PizzaFlavorRepository.cs" />
     <Compile Include="Services\Constants.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\DeliveryPersonService.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Services\Interfaces\IPizzaService.cs" />
     <Compile Include="Services\Interfaces\IStoreService.cs" />
     <Compile Include="Services\Interfaces\IPizzaSizeService.cs" />
+    <Compile Include="Services\PizzaFlavorService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -8,7 +8,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('DeliveryPersonsCtrl', function ($scope, DeliveryPersonRepository) {
+  .controller('DeliveryPersonsCtrl', function ($scope, $timeout, DeliveryPersonRepository) {
       $scope.dPersons = [];
       $scope.instance = {};
       $scope.outerError = null;
@@ -25,7 +25,8 @@ angular.module('frontendApp')
       // Load delivery person page.
       $scope.page = function (page) {
           $scope.clear();
-          DeliveryPersonRepository.list(page)
+          $timeout(function () {
+              DeliveryPersonRepository.list(page)
             .success(function (data) {
                 $scope.dPersons = data;
                 $scope.loading = false;
@@ -34,6 +35,7 @@ angular.module('frontendApp')
                 $scope.outerError = { data: data, status: status };
                 $scope.loading = false;
             });
+          }, 1000);
       }
 
       // Add delivery person.

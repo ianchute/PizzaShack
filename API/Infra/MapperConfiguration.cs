@@ -24,6 +24,11 @@ namespace API.Infra
             _.CreateMap<DeliveryPersonEditModel, DeliveryPerson>()
                 .ForMember(a => a.Orders, x => { x.Ignore(); });
             _.CreateMap<DeliveryPerson, DeliveryPersonViewModel>();
+
+            _.CreateMap<PizzaFlavorAddModel, PizzaFlavor>()
+                .ForMember(a => a.Id, x => { x.ResolveUsing(new GuidResolver()); })
+                .ForMember(a => a.Pizzas, x => { x.Ignore(); });
+            _.CreateMap<PizzaFlavor, PizzaFlavorViewModel>();
         }
     }
 }

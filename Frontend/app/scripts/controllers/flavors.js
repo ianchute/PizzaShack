@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc function
- * @name frontendApp.controller:CustomersCtrl
+ * @name frontendApp.controller:FlavorsCtrl
  * @description
- * # CustomersCtrl
+ * # FlavorsCtrl
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('CustomersCtrl', function ($scope, $timeout, CustomerRepository) {
-      $scope.customers = [];
+  .controller('FlavorsCtrl', function ($scope, $timeout, FlavorRepository) {
+      $scope.flavors = [];
       $scope.instance = {};
       $scope.outerError = null;
       $scope.innerError = null;
@@ -22,29 +22,28 @@ angular.module('frontendApp')
           $scope.instance = {};
       }
 
-      // Load customer page.
-      $scope.page = function (page) {
+      // Load flavor page.
+      $scope.page = function () {
           $scope.clear();
           $timeout(function () {
-              CustomerRepository.list(page)
+              FlavorRepository.list()
             .success(function (data) {
-                $scope.customers = data;
+                $scope.flavors = data;
                 $scope.loading = false;
             })
             .error(function (data, status) {
                 $scope.outerError = { data: data, status: status };
                 $scope.loading = false;
             });
-          }, 1000
-          );
-          
+          }, 1000);
       }
 
-      // Add customer.
-      $scope.addCustomer = function () {
-          CustomerRepository.add($scope.instance)
+
+      // Add flavor.
+      $scope.addFlavor = function () {
+          FlavorRepository.add($scope.instance)
             .success(function () {
-                $scope.page(0);
+                $scope.page();
                 $('#addModal').modal('hide');
             })
             .error(function (data, status) {
@@ -52,10 +51,10 @@ angular.module('frontendApp')
             });
       }
 
-      // Get customer.
-      $scope.getCustomer = function (id) {
+      // Get flavor.
+      $scope.getFlavor = function (id) {
           $scope.clear();
-          CustomerRepository.getById(id)
+          FlavorRepository.getById(id)
             .success(function (data) {
                 $scope.instance = data;
                 $('#detailsModal').modal('show');
@@ -65,31 +64,10 @@ angular.module('frontendApp')
             });
       }
 
-      // Edit customer.
-      $scope.initEditCustomer = function (id) {
+      // Delete flavor.
+      $scope.initDeleteFlavor = function (id) {
           $scope.clear();
-          CustomerRepository.getById(id)
-            .success(function (data) {
-                $scope.instance = data;
-                $('#editModal').modal('show');
-            })
-            .error(function (data, status) { $scope.outerError = data; });
-      }
-      $scope.editCustomer = function () {
-          CustomerRepository.edit($scope.instance)
-            .success(function () {
-                $scope.page(0);
-                $('#editModal').modal('hide');
-            })
-            .error(function (data, status) {
-                $scope.innerError = data;
-            });
-      }
-
-      // Delete customer.
-      $scope.initDeleteCustomer = function (id) {
-          $scope.clear();
-          CustomerRepository.getById(id)
+          FlavorRepository.getById(id)
             .success(function (data) {
                 $scope.instance = data;
                 $('#deleteModal').modal('show');
@@ -98,14 +76,14 @@ angular.module('frontendApp')
                 $scope.outerError = data;
             });
       }
-      $scope.deleteCustomer = function () {
-          CustomerRepository.deleteById($scope.instance.Id)
+      $scope.deleteFlavor = function () {
+          FlavorRepository.deleteById($scope.instance.Id)
             .success(function () {
-                $scope.page(0);
+                $scope.page();
                 $('#deleteModal').modal('hide');
             })
             .error(function (data, status) {
                 $scope.innerError = data;
             });
       }
-  });
+});

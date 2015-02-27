@@ -5,7 +5,8 @@ using System.Web;
 
 namespace API.Models
 {
-    public class PizzaFlavorViewModel
+    public class PizzaFlavorViewModel : BaseModel
     {
+        public string FlavorName { get; set; }
     }
 }

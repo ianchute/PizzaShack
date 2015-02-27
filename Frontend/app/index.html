@@ -42,9 +42,10 @@
                     <!-- Navbar -->
                     <div class="collapse navbar-collapse" id="js-navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="#/">Home</a></li>
-                            <li><a href="#/customers">Customers</a></li>
-                            <li><a href="#/deliveryPersons">Delivery Persons</a></li>
+                            <li><a ng-href="#/">Home</a></li>
+                            <li><a ng-href="#/flavors">Pizza Flavors</a></li>
+                            <li><a ng-href="#/customers">Customers</a></li>
+                            <li><a ng-href="#/deliveryPersons">Delivery Personnel</a></li>
                         </ul>
                     </div>
                 </div>
@@ -53,7 +54,7 @@
 
         <!-- Content -->
         <div class="container">
-            <div ng-view=""></div>
+            <div ng-view="" class="well well-lg"></div>
         </div>
         <br />
 
@@ -105,6 +106,8 @@
         <script src="scripts/controllers/global.js"></script>
         <script src="scripts/controllers/deliverypersons.js"></script>
         <script src="scripts/services/deliverypersonrepository.js"></script>
+        <script src="scripts/controllers/flavors.js"></script>
+        <script src="scripts/services/flavorrepository.js"></script>
         <!-- endbuild -->
     </div>
 </body>

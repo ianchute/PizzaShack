@@ -87,11 +87,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\PizzaFlavorControllerTests.cs" />
     <Compile Include="Controllers\DeliveryPersonControllerTests.cs" />
     <Compile Include="Controllers\CustomersControllerTests.cs" />
     <Compile Include="MockDbSet.cs" />
+    <Compile Include="Repositories\PizzaFlavorRepositoryTests.cs" />
     <Compile Include="Repositories\DeliveryPersonRepositoryTests.cs" />
     <Compile Include="Repositories\CustomerRepositoryTests.cs" />
+    <Compile Include="Services\PizzaFlavorServiceTests.cs" />
     <Compile Include="Services\DeliveryPersonServiceTests.cs" />
     <Compile Include="Services\CustomerServiceTests.cs" />
     <Compile Include="Infra\ContainerTest.cs" />

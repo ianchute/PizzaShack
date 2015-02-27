@@ -19,6 +19,8 @@ namespace API.Infra
                 .Ctor<ICustomerService>().IsTheDefault();
             _.ForConcreteType<DeliveryPersonsController>().Configure
                 .Ctor<IDeliveryPersonService>().IsTheDefault();
+            _.ForConcreteType<PizzaFlavorsController>().Configure
+                .Ctor<IPizzaFlavorService>().IsTheDefault();
         }
     }
 }

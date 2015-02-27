@@ -1,0 +1,163 @@
+<div>
+    <h3>Pizza Flavors</h3>
+    <br />
+
+    <div class="row">
+        <!-- Loading -->
+        <div ng-show="loading" class="col-md-offset-5 col-md-4">
+            <div class="wobblebar"></div>
+            <br /><br />
+        </div>
+
+        <!-- Error -->
+        <div class="col-md-offset-3 col-md-6 alert alert-warning" ng-hide="outerError == null">
+            <div class="label label-warning center-block text-center">
+                <span class="glyphicon glyphicon-warning-sign"></span>
+                STATUS {{outerError.status}}
+            </div>
+            <br /><br />
+            <div ng-hide="outerError.data == null">
+                <b>Errors:</b>
+                <ul>
+                    <li ng-repeat="error in outerError.data"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div ng-show="outerError == null && !loading">
+        <button type="button" class="btn btn-primary" ng-click="clear()" data-toggle="modal" data-target="#addModal">
+            <span class="glyphicon glyphicon-plus"></span>
+            Add New Flavor
+        </button>
+        <br /><br />
+        <table class="table table-striped" ng-init="page()">
+            <thead>
+                <tr>
+                    <th>Flavor</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="flavor in flavors">
+                <tr>
+                    <td>{{flavor.FlavorName}}</td>
+                    <td class="btn-group">
+                        <button class="btn btn-info" ng-click="getFlavor(flavor.Id)">
+                            <span class="glyphicon glyphicon-book"></span>
+                        </button>
+                        <button class="btn btn-danger" ng-click="initDeleteFlavor(flavor.Id)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                        <button class="btn btn-primary" ng-click="">
+                            <span class="glyphicon glyphicon-briefcase"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<!-- Add Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="Add Flavor" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add Flavor</h4>
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body">
+
+                <!-- Validation -->
+                <div class="alert alert-warning" ng-hide="innerError == null">
+                    <b><span class="glyphicon glyphicon-warning-sign"></span> Errors:</b>
+                    <ul>
+                        <li ng-repeat="error in innerError">{{error}}</li>
+                    </ul>
+                </div>
+
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-3">Flavor Name:</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" ng-model="instance.FlavorName" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="addFlavor()">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Details Modal -->
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="Flavor Details" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Flavor Details</h4>
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dt>Flavor Name</dt>
+                    <dd>{{instance.FlavorName}}</dd>
+                </dl>
+            </div>
+
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="Delete Flavor" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Delete Flavor</h4>
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dt>Flavor</dt>
+                    <dd>{{instance.FlavorName}}</dd>
+                </dl>
+            </div>
+
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" ng-click="deleteFlavor()">
+                    <span class="glyphicon glyphicon-warning-sign"></span>
+                    Delete Flavor
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pizza Modal -->
