@@ -16,17 +16,6 @@ angular.module('frontendApp')
       $scope.loading = true;
       $scope.pageLoading = true;
 
-      // Events.
-      $("#addModal").keyup(function (event) {
-          if (event.keyCode == 13) { $scope.addDPerson(); }
-      });
-      $("#editModal").keyup(function (event) {
-          if (event.keyCode == 13) { $scope.editDPerson(); }
-      });
-      $("#deleteModal").keyup(function (event) {
-          if (event.keyCode == 13) { $scope.deleteDPerson(); }
-      });
-
       // Clear errors and current instance.
       $scope.clear = function () {
           $scope.outerError = null;
@@ -52,6 +41,7 @@ angular.module('frontendApp')
             .error(function (data, status) {
                 $scope.outerError = { data: data, status: status };
                 $scope.loading = false;
+                $scope.pageLoading = false;
             });
           }, 1000);
       }
@@ -124,4 +114,18 @@ angular.module('frontendApp')
                 $scope.innerError = data;
             });
       }
+
+      // Events.
+      $("#addModal").keyup(function (event) {
+          if (event.keyCode == 13) { $scope.addDPerson(); }
+      });
+      $("#editModal").keyup(function (event) {
+          if (event.keyCode == 13) { $scope.editDPerson(); }
+      });
+      $("#deleteModal").keyup(function (event) {
+          if (event.keyCode == 13) { $scope.deleteDPerson(); }
+      });
+
+      // Initialize.
+      $scope.page(0);
   });
