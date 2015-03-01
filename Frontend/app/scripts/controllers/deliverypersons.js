@@ -21,7 +21,7 @@ angular.module('frontendApp')
           $scope.outerError = null;
           $scope.innerError = null;
           $scope.instance = {};
-      }
+      };
 
       // Load delivery person page.
       $scope.page = function (page) {
@@ -34,9 +34,9 @@ angular.module('frontendApp')
                 $scope.pageLoading = false;
 
                 $scope.clear();
-                $('#addModal').modal('hide');
-                $('#editModal').modal('hide');
-                $('#deleteModal').modal('hide');
+                angular.element('#addModal').modal('hide');
+                angular.element('#editModal').modal('hide');
+                angular.element('#deleteModal').modal('hide');
             })
             .error(function (data, status) {
                 $scope.outerError = { data: data, status: status };
@@ -44,7 +44,7 @@ angular.module('frontendApp')
                 $scope.pageLoading = false;
             });
           }, 1000);
-      }
+      };
 
       // Add delivery person.
       $scope.addDPerson = function () {
@@ -52,10 +52,10 @@ angular.module('frontendApp')
             .success(function () {
                 $scope.page(0);
             })
-            .error(function (data, status) {
+            .error(function (data) {
                 $scope.innerError = data;
             });
-      }
+      };
 
       // Get delivery person.
       $scope.getDPerson = function (id) {
@@ -63,12 +63,12 @@ angular.module('frontendApp')
           DeliveryPersonRepository.getById(id)
             .success(function (data) {
                 $scope.instance = data;
-                $('#detailsModal').modal('show');
+                angular.element('#detailsModal').modal('show');
             })
-            .error(function (data, status) {
+            .error(function (data) {
                 $scope.outerError = data;
             });
-      }
+      };
 
       // Edit customer.
       $scope.initEditDPerson = function (id) {
@@ -77,21 +77,21 @@ angular.module('frontendApp')
           DeliveryPersonRepository.getById(id)
             .success(function (data) {
                 $scope.instance = data;
-                $('#editModal').modal('show');
+                angular.element('#editModal').modal('show');
             })
-            .error(function (data, status) {
+            .error(function (data) {
                 $scope.outerError = data;
             });
-      }
+      };
       $scope.editDPerson = function () {
           DeliveryPersonRepository.edit($scope.instance)
             .success(function () {
                 $scope.page(0);
             })
-            .error(function (data, status) {
+            .error(function (data) {
                 $scope.innerError = data;
             });
-      }
+      };
 
       // Delete customer.
       $scope.initDeleteDPerson = function (id) {
@@ -99,31 +99,31 @@ angular.module('frontendApp')
           DeliveryPersonRepository.getById(id)
             .success(function (data) {
                 $scope.instance = data;
-                $('#deleteModal').modal('show');
+                angular.element('#deleteModal').modal('show');
             })
-            .error(function (data, status) {
+            .error(function (data) {
                 $scope.outerError = data;
             });
-      }
+      };
       $scope.deleteDPerson = function () {
           DeliveryPersonRepository.deleteById($scope.instance.Id)
             .success(function () {
                 $scope.page(0);
             })
-            .error(function (data, status) {
+            .error(function (data) {
                 $scope.innerError = data;
             });
-      }
+      };
 
       // Events.
-      $("#addModal").keyup(function (event) {
-          if (event.keyCode == 13) { $scope.addDPerson(); }
+      angular.element('#addModal').keyup(function (event) {
+          if (event.keyCode === 13) { $scope.addDPerson(); }
       });
-      $("#editModal").keyup(function (event) {
-          if (event.keyCode == 13) { $scope.editDPerson(); }
+      angular.element('#editModal').keyup(function (event) {
+          if (event.keyCode === 13) { $scope.editDPerson(); }
       });
-      $("#deleteModal").keyup(function (event) {
-          if (event.keyCode == 13) { $scope.deleteDPerson(); }
+      angular.element('#deleteModal').keyup(function (event) {
+          if (event.keyCode === 13) { $scope.deleteDPerson(); }
       });
 
       // Initialize.

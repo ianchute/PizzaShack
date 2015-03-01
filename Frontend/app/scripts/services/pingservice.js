@@ -11,5 +11,5 @@ angular.module('frontendApp')
   .service('PingService', function ($http, ApiPath) {
       return {
           ping: function () { return $http.get(ApiPath); }
-      }
+      };
   });

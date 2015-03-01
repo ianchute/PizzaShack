@@ -16,20 +16,12 @@ angular.module('frontendApp')
       $scope.loading = true;
       $scope.pageLoading = true;
 
-      // Events.
-      $("#addModal").keyup(function (event) {
-          if (event.keyCode == 13) { $scope.addFlavor(); }
-      });
-      $("#deleteModal").keyup(function (event) {
-          if (event.keyCode == 13) { $scope.deleteFlavor(); }
-      });
-
       // Clear errors and current instance.
       $scope.clear = function () {
           $scope.outerError = null;
           $scope.innerError = null;
           $scope.instance = {};
-      }
+      };
 
       // Load flavor page.
       $scope.page = function () {
@@ -42,16 +34,16 @@ angular.module('frontendApp')
                 $scope.pageLoading = false;
 
                 $scope.clear();
-                $('#addModal').modal('hide');
-                $('#deleteModal').modal('hide');
+                angular.element('#addModal').modal('hide');
+                angular.element('#deleteModal').modal('hide');
             })
             .error(function (data, status) {
                 $scope.outerError = { data: data, status: status };
                 $scope.loading = false;
+                $scope.pageLoading = false;
             });
           }, 1000);
-      }
-
+      };
 
       // Add flavor.
       $scope.addFlavor = function () {
@@ -59,10 +51,10 @@ angular.module('frontendApp')
             .success(function () {
                 $scope.page();
             })
-            .error(function (data, status) {
+            .error(function (data) {
                 $scope.innerError = data;
             });
-      }
+      };
 
       // Get flavor.
       $scope.getFlavor = function (id) {
@@ -70,12 +62,12 @@ angular.module('frontendApp')
           FlavorRepository.getById(id)
             .success(function (data) {
                 $scope.instance = data;
-                $('#detailsModal').modal('show');
+                angular.element('#detailsModal').modal('show');
             })
-            .error(function (data, status) {
+            .error(function (data) {
                 $scope.outerError = data;
             });
-      }
+      };
 
       // Delete flavor.
       $scope.initDeleteFlavor = function (id) {
@@ -83,19 +75,30 @@ angular.module('frontendApp')
           FlavorRepository.getById(id)
             .success(function (data) {
                 $scope.instance = data;
-                $('#deleteModal').modal('show');
+                angular.element('#deleteModal').modal('show');
             })
-            .error(function (data, status) {
+            .error(function (data) {
                 $scope.outerError = data;
             });
-      }
+      };
       $scope.deleteFlavor = function () {
           FlavorRepository.deleteById($scope.instance.Id)
             .success(function () {
                 $scope.page();
             })
-            .error(function (data, status) {
+            .error(function (data) {
                 $scope.innerError = data;
             });
-      }
+      };
+
+      // Events.
+      angular.element('#addModal').keyup(function (event) {
+          if (event.keyCode === 13) { $scope.addFlavor(); }
+      });
+      angular.element('#deleteModal').keyup(function (event) {
+          if (event.keyCode === 13) { $scope.deleteFlavor(); }
+      });
+
+      // Initialize.
+      $scope.page();
 });
