@@ -1,0 +1,24 @@
+﻿<br /><br />
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th ng-repeat="header in headers">
+                {{header}}
+            </th>
+            <th ng-hide="noactions">
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody ng-repeat="datum in data">
+        <tr>
+            <td ng-repeat="key in keys">
+                {{datum[key]}}
+            </td>
+            <!-- Buttons -->
+            <td data-id="{{datum.Id}}" ng-hide="noactions" ng-transclude>
+            </td>
+        </tr>
+    </tbody>
+</table>

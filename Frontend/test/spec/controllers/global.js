@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: GlobalcontrollerCtrl', function () {
+describe('Controller: GlobalCtrl', function () {
 
   // load the controller's module
   beforeEach(module('frontendApp'));
 
-  var GlobalcontrollerCtrl,
+  var GlobalCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    GlobalcontrollerCtrl = $controller('GlobalcontrollerCtrl', {
+    GlobalCtrl = $controller('GlobalCtrl', {
       $scope: scope
     });
   }));

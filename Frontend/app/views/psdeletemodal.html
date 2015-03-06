@@ -1,0 +1,32 @@
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="Delete" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Delete {{name}}</h4>
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dt ng-repeat-start="($index, key) in keys">{{headers[$index]}}</dt>
+                    <dd ng-repeat-end>{{instance[key]}}</dd>
+                </dl>
+            </div>
+
+            <!-- Footer -->
+            <div class="modal-footer">
+                <button ng-hide="deleting" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button ng-hide="deleting" type="button" class="btn btn-danger" ng-click="finalizeDelete()">
+                    <span class="glyphicon glyphicon-warning-sign"></span>
+                    Delete {{name}}
+                </button>
+                <span ng-show="deleting" class="wobblebar"></span>
+            </div>
+        </div>
+    </div>
+</div>

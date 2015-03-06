@@ -38,6 +38,7 @@ namespace API.Controllers
             if(added)
                 return Request.CreateResponse(HttpStatusCode.Created);
             return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            //return Request.CreateResponse(418, "I'm a teapot");
         }
 
         [HttpGet]

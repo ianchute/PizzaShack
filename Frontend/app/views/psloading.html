@@ -1,0 +1,18 @@
+<div ng-show="loading">
+    <br />
+    <span class="text-center center-block">
+        <span class="three-quarters"></span>
+    </span>
+    <br /><br />
+</div>
+<div ng-show="!loading && status === 200">
+    <ng-transclude></ng-transclude>
+</div>
+<div class="row">
+    <div class="col-md-offset-3 col-md-6 alert alert-warning" ng-hide="loading || status === 200">
+        <span class="text-center center-block">
+            <span class="glyphicon glyphicon-warning-sign"></span>
+            <b class="">HTTP STATUS {{getStatusName()}} ({{status}})</b>
+        </span>
+    </div>
+</div>
