@@ -33,5 +33,3 @@ How to water:
  10. To run the website:<br>
      First, run the backend (F5/F11 in Visual Studio).<br>
      Then execute <b>grunt serve</b> within the Frontend folder.
-
-For any problems encountered, contact ianchute@hotmail.com
